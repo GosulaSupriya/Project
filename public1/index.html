@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best-Performing Student Recognition System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+        <h1>Best-Performing Student Recognition System</h1>
+        <label for="batch-select">Select Batch:</label>
+        <select id="batch-select">
+            <option value="">Select a batch</option>
+        </select>
+        <button id="fetch-students">Fetch Top Students</button>
+        <div id="student-list"></div>
+        <footer>
+            <p>&copy; 2024 Student Recognition System</p>
+        </footer>
+    </div>
+
+    <script>
+        // Populate batch selector on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('/api/batches')
+                .then(response => response.json())
+                .then(data => {
+                    const batchSelect = document.getElementById('batch-select');
+                    data.batches.forEach(batch => {
+                        const option = document.createElement('option');
+                        option.value = batch.id;
+                        option.textContent = batch.name;
+                        batchSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching batches:', error));
+        });
+
+        document.getElementById('fetch-students').addEventListener('click', fetchTopStudents);
+
+        function fetchTopStudents() {
+            const batch = document.getElementById('batch-select').value;
+            if (!batch) {
+                alert('Please select a batch');
+                return;
+            }
+
+            fetch(`/api/top-students?batch=${batch}`)
+                .then(response => response.json())
+                .then(data => {
+                    const studentList = document.getElementById('student-list');
+                    studentList.innerHTML = '';  // Clear previous students
+
+                    // Ensure that the top 3 students are displayed
+                    const topStudents = data.students.sort((a, b) => b.totalScore - a.totalScore).slice(0, 3);
+
+                    // Check if there are students to display
+                    if (topStudents.length > 0) {
+                        topStudents.forEach(student => {
+                            const card = document.createElement('div');
+                            card.className = 'student-card top-student';
+
+                            // Fixed innerHTML assignment
+                            card.innerHTML = `
+                                <h2>${student.name}</h2>
+                                <p class="student-info">Total Score: ${student.totalScore}</p>
+                            `;
+
+                            studentList.appendChild(card);
+                        });
+                    } else {
+                        studentList.innerHTML = '<p>No students found for this batch.</p>';
+                    }
+                })
+                .catch(error => console.error('Error fetching students:', error));
+        }
+    </script>
+</body>
+</html>

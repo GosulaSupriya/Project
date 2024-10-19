@@ -1,0 +1,102 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url('https://img.lovepik.com/background/20211022/large/lovepik-blue-tech-background-image_401949886.jpg'); /* Background Image */
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent repeating */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+#container {
+    max-width: 300px; /* Adjusted width to make the form smaller */
+    background: rgba(255, 255, 255, 0.7); /* Semi-transparent white */
+    padding: 15px; /* Reduced padding */
+    border-radius: 12px; /* Slightly rounded corners */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    z-index: 1; /* Keep above the background */
+}
+
+h1 {
+    color: #007bff;
+    font-size: 1.5em; /* Adjusted size */
+    margin-bottom: 15px; /* Reduced margin */
+    font-weight: bold;
+}
+
+label {
+    font-size: 0.9em; /* Reduced font size */
+    color: #555;
+    margin-bottom: 8px; /* Reduced margin */
+    display: block;
+}
+
+select, button {
+    padding: 10px; /* Reduced padding */
+    margin-top: 8px; /* Reduced margin */
+    border: 2px solid #007bff;
+    border-radius: 6px;
+    font-size: 0.9em; /* Reduced font size */
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly more opaque */
+}
+
+select:focus, button:focus {
+    outline: none;
+    border-color: #0056b3;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.student-card {
+    background-color: #f8f9fa;
+    padding: 12px; /* Reduced padding */
+    margin: 12px 0; /* Reduced margin */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    transition: transform 0.2s;
+}
+
+.top-student {
+    border: 2px solid #ff9800;
+    background-color: #fff3cd;
+}
+
+.student-card h2 {
+    margin: 0;
+    font-size: 1.3em; /* Reduced font size */
+    color: #343a40;
+}
+
+.student-info {
+    font-size: 0.9em; /* Reduced font size */
+    color: #6c757d;
+    margin: 4px 0; /* Reduced margin */
+}
+
+footer {
+    margin-top: 15px; /* Reduced margin */
+    font-size: 0.8em; /* Reduced font size */
+    color: #777;
+}
